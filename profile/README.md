@@ -27,6 +27,7 @@ putting the glasses on.
 | Repo | What it is |
 |------|------------|
 | [**xrkit**](https://github.com/go-xrkit/xrkit) | the geometry: `pose` · `stereo` · `projection` · `warp` · `ribbon` · `glasses`, 100% coverage, 6 architectures |
+| [**depth3d**](https://github.com/go-xrkit/depth3d) | one flat picture in, two eyes out — depth from a real network on the Neural Engine and both views on the GPU, or from cues in the picture anywhere else. The two paths agree: **0 bytes different out of 86 999 040** between the GPU synthesis and the portable one, on a real photograph with a real network's depth map |
 | [**player**](https://github.com/go-xrkit/player) | `xrplay` — hardware decode, per-eye reprojection, full screen on the glasses' own display (macOS) |
 | [**desk**](https://github.com/go-xrkit/desk) | several computer screens on a 360° ribbon, scrolled from the keyboard — real virtual displays macOS extends the desktop onto |
 | [**android**](https://github.com/go-xrkit/android) | screen capture on Android as a CGO-free Go binary talking to a small Java host, and a documented account of the four ways Android 15 refuses to let an app create a display it can launch onto |
