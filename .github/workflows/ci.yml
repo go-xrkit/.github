@@ -32,6 +32,44 @@ permissions:
   contents: read
 
 jobs:
+  # This repository is one README, and its failure mode is silent: an image
+  # that 404s renders as a broken box on the org's front page, and a link to a
+  # repo that was renamed goes nowhere. Neither breaks anything that would
+  # complain. go-fleettools/.github has had this job; this organisation did not,
+  # which is how two "MkDocs Material" claims survived here after the site moved
+  # to Hugo — a stale CLAIM is not something a link checker catches, but the
+  # front page having no gate at all is why nobody was looking.
+  links:
+    name: every link and image resolves
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      # linkcheck (go-fleettools/fleettools, pinned) rather than a hand-written
+      # curl loop: retries with exponential backoff that honours Retry-After,
+      # github.com repo and path links decided through the REST API, a DEAD link
+      # told apart from a FLAKY host. It already skips img.shields.io, the
+      # RFC 2606 / 6761 placeholder hosts and URLs with no host.
+      #
+      # ⛔ Pinned at v0.121.0, the current release, and not at the v0.88.0 the
+      # sibling organisation runs: that one prints "STALE -- 56 commit(s)
+      # behind" on every pass, and a copy that starts behind starts owing
+      # somebody an upgrade.
+      #
+      # THE ONE DELIBERATE EXCEPTION to "no secret on a command line or in the
+      # environment": the job's ephemeral, read-only github.token reaches the
+      # tool as a 0600 file in RUNNER_TEMP, written by the shell builtin printf
+      # (no process argument, no environment variable) and removed on exit. It
+      # is sent to api.github.com only and never printed.
+      - name: Check
+        run: |
+          umask 077
+          token="${RUNNER_TEMP}/linkcheck-token"
+          trap 'rm -f "${token}"' EXIT
+          printf '%s' '${{ github.token }}' > "${token}"
+          go run github.com/go-fleettools/fleettools/cmd/linkcheck@v0.121.0 \
+            --token-file "${token}" \
+            profile/README.md
+
   validate:
     runs-on: ubuntu-latest
     steps:
