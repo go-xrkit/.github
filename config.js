@@ -19,7 +19,14 @@ module.exports = {
   autodiscoverFilter: ['go-xrkit/**'],
   onboarding: false,
   requireConfig: 'optional',
-  dependencyDashboard: true,
+  // ⛔ AN OBJECT, NOT A BOOLEAN, SINCE renovate 42. The validator this
+  // repository's CI runs is `renovate@latest`, so the day upstream migrated
+  // `dependencyDashboard` from a boolean the lane went red with nothing here
+  // changed — measured on this repository 2026-11-15, and on go-richdoc the day
+  // before. The old spelling still WORKS (Renovate migrates it at run time and
+  // warns); what it breaks is `--strict`, which is the only thing that tells
+  // anybody this config is still valid.
+  dependencyDashboard: { enabled: true },
   repositoryCache: 'enabled',
   // default.json beside this file is a PRESET, and a preset reaches a
   // repository only through an `extends` that names it. Sitting in the
