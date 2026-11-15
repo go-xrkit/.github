@@ -6,7 +6,7 @@
 
 [![License](https://img.shields.io/badge/license-BSD--3--Clause-blue.svg)](https://github.com/go-xrkit/xrkit/blob/main/LICENSE)
 [![Website](https://img.shields.io/badge/website-go--xrkit.github.io-0284c7)](https://go-xrkit.github.io)
-[![Docs](https://img.shields.io/badge/docs-mkdocs--material-0284c7)](https://go-xrkit.github.io/docs/)
+[![Docs](https://img.shields.io/badge/docs-hugo-0284c7)](https://go-xrkit.github.io/docs/)
 [![Pure Go](https://img.shields.io/badge/pure%20Go-CGO%3D0-00ADD8?logo=go&logoColor=white)](https://github.com/go-xrkit/xrkit)
 
 **The geometry an immersive video player and an XR virtual desktop need, as
@@ -26,12 +26,12 @@ putting the glasses on.
 
 | Repo | What it is |
 |------|------------|
-| [**xrkit**](https://github.com/go-xrkit/xrkit) | the geometry: `pose` · `stereo` · `projection` · `warp` · `ribbon` · `glasses`, 100% coverage, 6 architectures |
+| [**xrkit**](https://github.com/go-xrkit/xrkit) | the geometry: `pose` · `stereo` · `projection` · `warp` · `ribbon` · `glasses` · `headflow`, 100% coverage, 6 architectures |
 | [**depth3d**](https://github.com/go-xrkit/depth3d) | one flat picture in, two eyes out — depth from a real network on the Neural Engine and both views on the GPU, or from cues in the picture anywhere else. The two paths agree: **0 bytes different out of 86 999 040** between the GPU synthesis and the portable one, on a real photograph with a real network's depth map |
 | [**player**](https://github.com/go-xrkit/player) | `xrplay` — hardware decode, per-eye reprojection, full screen on the glasses' own display (macOS) |
 | [**desk**](https://github.com/go-xrkit/desk) | several computer screens on a 360° ribbon, scrolled from the keyboard — real virtual displays macOS extends the desktop onto |
 | [**android**](https://github.com/go-xrkit/android) | screen capture on Android as a CGO-free Go binary talking to a small Java host, and a documented account of the four ways Android 15 refuses to let an app create a display it can launch onto |
-| [**docs**](https://github.com/go-xrkit/docs) | MkDocs Material documentation, served at [/docs/](https://go-xrkit.github.io/docs/) |
+| [**docs**](https://github.com/go-xrkit/docs) | Hugo documentation (the `tannevaled/hextra` fork), served per version at [/docs/](https://go-xrkit.github.io/docs/) |
 | [**go-xrkit.github.io**](https://github.com/go-xrkit/go-xrkit.github.io) | the Hugo landing page |
 | [**brand**](https://github.com/go-xrkit/brand) | brand assets — logos & icons |
 
